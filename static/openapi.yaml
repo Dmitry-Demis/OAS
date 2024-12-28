@@ -132,7 +132,7 @@ components:
       title: ValidationError
       type: object
 info:
-  description: API музыкального каталога
+  description: API музыкального каталога с метриками
   title: Музыкальный каталог API
   version: 3.0.1
 openapi: 3.1.0
@@ -177,115 +177,6 @@ paths:
       summary: Add Album
       tags:
       - album
-  /album/{albumId}:
-    delete:
-      operationId: delete_album_album__albumId__delete
-      parameters:
-      - in: path
-        name: albumId
-        required: true
-        schema:
-          title: Albumid
-          type: integer
-      responses:
-        '204':
-          description: Successful Response
-        '422':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Delete Album
-      tags:
-      - album
-    get:
-      operationId: get_album_by_id_album__albumId__get
-      parameters:
-      - in: path
-        name: albumId
-        required: true
-        schema:
-          title: Albumid
-          type: integer
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Album'
-          description: Successful Response
-        '422':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Get Album By Id
-      tags:
-      - album
-    put:
-      operationId: update_album_album__albumId__put
-      parameters:
-      - in: path
-        name: albumId
-        required: true
-        schema:
-          title: Albumid
-          type: integer
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Album'
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Album'
-          description: Successful Response
-        '422':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Update Album
-      tags:
-      - album
-  /albums:
-    post:
-      operationId: add_albums_albums_post
-      requestBody:
-        content:
-          application/json:
-            schema:
-              items:
-                $ref: '#/components/schemas/Album'
-              title: Albums
-              type: array
-        required: true
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Album'
-                title: Response Add Albums Albums Post
-                type: array
-          description: Successful Response
-        '422':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Add Albums
-      tags:
-      - album
   /artist:
     get:
       operationId: get_artists_artist_get
@@ -327,27 +218,6 @@ paths:
       tags:
       - artist
   /artist/{artistId}:
-    delete:
-      operationId: delete_artist_artist__artistId__delete
-      parameters:
-      - in: path
-        name: artistId
-        required: true
-        schema:
-          title: Artistid
-          type: integer
-      responses:
-        '204':
-          description: Successful Response
-        '422':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Delete Artist
-      tags:
-      - artist
     get:
       operationId: get_artist_by_id_artist__artistId__get
       parameters:
@@ -373,95 +243,16 @@ paths:
       summary: Get Artist By Id
       tags:
       - artist
-    put:
-      operationId: update_artist_artist__artistId__put
-      parameters:
-      - in: path
-        name: artistId
-        required: true
-        schema:
-          title: Artistid
-          type: integer
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Artist-Input'
-        required: true
+  /metrics:
+    get:
+      operationId: get_metrics_metrics_get
       responses:
         '200':
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/Artist-Output'
+              schema: {}
           description: Successful Response
-        '422':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Update Artist
-      tags:
-      - artist
-  /artists:
-    post:
-      operationId: add_artists_artists_post
-      requestBody:
-        content:
-          application/json:
-            schema:
-              items:
-                $ref: '#/components/schemas/Artist-Input'
-              title: Artists
-              type: array
-        required: true
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Artist-Output'
-                title: Response Add Artists Artists Post
-                type: array
-          description: Successful Response
-        '422':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Add Artists
-      tags:
-      - artist
-  /delete_all_albums:
-    delete:
-      operationId: delete_all_albums_delete_all_albums_delete
-      responses:
-        '204':
-          description: Successful Response
-      summary: Delete All Albums
-      tags:
-      - album
-  /delete_all_artists:
-    delete:
-      operationId: delete_all_artists_delete_all_artists_delete
-      responses:
-        '204':
-          description: Successful Response
-      summary: Delete All Artists
-      tags:
-      - artist
-  /delete_all_tracks:
-    delete:
-      operationId: delete_all_tracks_delete_all_tracks_delete
-      responses:
-        '204':
-          description: Successful Response
-      summary: Delete All Tracks
-      tags:
-      - track
+      summary: Get Metrics
   /track:
     get:
       operationId: get_tracks_track_get
@@ -500,114 +291,5 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
       summary: Add Track
-      tags:
-      - track
-  /track/{trackId}:
-    delete:
-      operationId: delete_track_track__trackId__delete
-      parameters:
-      - in: path
-        name: trackId
-        required: true
-        schema:
-          title: Trackid
-          type: integer
-      responses:
-        '204':
-          description: Successful Response
-        '422':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Delete Track
-      tags:
-      - track
-    get:
-      operationId: get_track_by_id_track__trackId__get
-      parameters:
-      - in: path
-        name: trackId
-        required: true
-        schema:
-          title: Trackid
-          type: integer
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Track'
-          description: Successful Response
-        '422':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Get Track By Id
-      tags:
-      - track
-    put:
-      operationId: update_track_track__trackId__put
-      parameters:
-      - in: path
-        name: trackId
-        required: true
-        schema:
-          title: Trackid
-          type: integer
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Track'
-        required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Track'
-          description: Successful Response
-        '422':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Update Track
-      tags:
-      - track
-  /tracks:
-    post:
-      operationId: add_tracks_tracks_post
-      requestBody:
-        content:
-          application/json:
-            schema:
-              items:
-                $ref: '#/components/schemas/Track'
-              title: Tracks
-              type: array
-        required: true
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/Track'
-                title: Response Add Tracks Tracks Post
-                type: array
-          description: Successful Response
-        '422':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HTTPValidationError'
-          description: Validation Error
-      summary: Add Tracks
       tags:
       - track
