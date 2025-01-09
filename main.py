@@ -9,6 +9,8 @@ import os
 from typing import AsyncGenerator
 import psutil  # Для мониторинга системных метрик
 import uvicorn
+import logging
+from logging_loki import LokiHandler
 
 # Функция для синхронизации OpenAPI-схемы в файл
 def update_openapi_schema(app: FastAPI):
@@ -41,6 +43,24 @@ async def lifespan(app: FastAPI) -> AsyncGenerator:
 
     yield
 
+LOKI_URL = "http://loki:3100/loki/api/v1/push"
+handler = LokiHandler(
+    url=LOKI_URL,
+    tags={"application": __name__},
+    version="1"
+)
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("app.log", encoding="utf-8"),  # Установка кодировки
+        logging.StreamHandler()
+    ]
+)
+
+logger = logging.getLogger(__name__)
+
 # Ваше приложение FastAPI
 app = FastAPI(
     title="Музыкальный каталог API",
@@ -61,15 +81,17 @@ memory_usage = Gauge("memory_usage", "Использование памяти в
 @app.middleware("http")
 async def add_metrics(request: Request, call_next):
     response = await call_next(request)
-    
+
     http_total_requests.labels(
-        method=request.method, 
-        http_status=str(response.status_code), 
+        method=request.method,
+        http_status=str(response.status_code),
         endpoint=request.url.path
     ).inc()
-    
-    return response
 
+    # Логирование
+    logger.info(f"Request {request.method} {request.url.path} completed with status {response.status_code}")
+
+    return response
 
 # Прочие метрики
 artists_created_total = Counter("artists_created_total", "Общее количество созданных исполнителей")
@@ -109,52 +131,79 @@ def get_metrics():
 # Эндпоинты для исполнителей
 @app.post("/artist", response_model=Artist, status_code=201, tags=["artist"])
 def add_artist(artist: Artist):
-    if any(a.id == artist.id for a in artists_db):
-        raise HTTPException(status_code=400, detail="Исполнитель с таким ID уже существует.")
-    artists_db.append(artist)
-    artists_created_total.inc()
-    update_openapi_schema(app)
-    return artist
+    try:
+        if any(a.id == artist.id for a in artists_db):
+            logger.error(f"Attempt to create duplicate artist with ID {artist.id}.")
+            raise HTTPException(status_code=400, detail="Исполнитель с таким ID уже существует.")
+        artists_db.append(artist)
+        artists_created_total.inc()
+        update_openapi_schema(app)
+        logger.info(f"Artist {artist.name} with ID {artist.id} created.")
+        return artist
+    except HTTPException as e:
+        logger.error(f"Error adding artist: {e.detail}. Input: {artist.dict()}")
+        raise e
 
 @app.get("/artist", response_model=List[Artist], tags=["artist"])
 def get_artists():
+    logger.info("Fetching all artists.")
     return artists_db
 
 @app.get("/artist/{artistId}", response_model=Artist, tags=["artist"])
 def get_artist_by_id(artistId: int):
-    artist = next((a for a in artists_db if a.id == artistId), None)
-    if not artist:
-        raise HTTPException(status_code=404, detail="Исполнитель не найден")
-    return artist
+    try:
+        artist = next((a for a in artists_db if a.id == artistId), None)
+        if not artist:
+            logger.error(f"Artist with ID {artistId} not found.")
+            raise HTTPException(status_code=404, detail="Исполнитель не найден")
+        logger.info(f"Artist with ID {artistId} fetched.")
+        return artist
+    except HTTPException as e:
+        logger.error(f"Error fetching artist: {e.detail}. Artist ID: {artistId}")
+        raise e
 
 # Эндпоинты для альбомов
 @app.post("/album", response_model=Album, status_code=201, tags=["album"])
 def add_album(album: Album):
-    artist = next((a for a in artists_db if a.id == album.artist_id), None)
-    if not artist:
-        raise HTTPException(status_code=404, detail="Исполнитель не найден")
-    albums_db.append(album)
-    albums_created_total.inc()
-    update_openapi_schema(app)
-    return album
+    try:
+        artist = next((a for a in artists_db if a.id == album.artist_id), None)
+        if not artist:
+            logger.error(f"Artist with ID {album.artist_id} not found for album {album.title}.")
+            raise HTTPException(status_code=404, detail="Исполнитель не найден")
+        albums_db.append(album)
+        albums_created_total.inc()
+        update_openapi_schema(app)
+        logger.info(f"Album {album.title} created by artist {artist.name}.")
+        return album
+    except HTTPException as e:
+        logger.error(f"Error adding album: {e.detail}. Input: {album.dict()}")
+        raise e
 
 @app.get("/album", response_model=List[Album], tags=["album"])
 def get_albums():
+    logger.info("Fetching all albums.")
     return albums_db
 
 # Эндпоинты для треков
 @app.post("/track", response_model=Track, status_code=201, tags=["track"])
 def add_track(track: Track):
-    album = next((al for al in albums_db if al.id == track.album_id), None)
-    if not album:
-        raise HTTPException(status_code=404, detail="Альбом не найден")
-    tracks_db.append(track)
-    tracks_created_total.inc()
-    update_openapi_schema(app)
-    return track
+    try:
+        album = next((al for al in albums_db if al.id == track.album_id), None)
+        if not album:
+            logger.error(f"Album with ID {track.album_id} not found for track {track.title}.")
+            raise HTTPException(status_code=404, detail="Альбом не найден")
+        tracks_db.append(track)
+        tracks_created_total.inc()
+        update_openapi_schema(app)
+        logger.info(f"Track {track.title} created for album {album.title}.")
+        return track
+    except HTTPException as e:
+        logger.error(f"Error adding track: {e.detail}. Input: {track.dict()}")
+        raise e
 
 @app.get("/track", response_model=List[Track], tags=["track"])
 def get_tracks():
+    logger.info("Fetching all tracks.")
     return tracks_db
 
 # Запуск приложения

@@ -1,0 +1,56 @@
+2025-01-09 16:12:34,528 - main - ERROR - Artist with ID 1 not found.
+2025-01-09 16:12:34,529 - main - ERROR - Error fetching artist: Исполнитель не найден. Artist ID: 1
+2025-01-09 16:12:34,529 - main - INFO - Request GET /artist/1 completed with status 404
+2025-01-09 16:12:37,281 - main - INFO - Artist string with ID 2 created.
+2025-01-09 16:12:37,281 - main - INFO - Request POST /artist completed with status 201
+2025-01-09 16:12:39,582 - main - INFO - Fetching all artists.
+2025-01-09 16:12:39,583 - main - INFO - Request GET /artist completed with status 200
+2025-01-09 16:12:40,132 - main - INFO - Fetching all artists.
+2025-01-09 16:12:40,133 - main - INFO - Request GET /artist completed with status 200
+2025-01-09 16:12:40,666 - main - INFO - Fetching all artists.
+2025-01-09 16:12:40,668 - main - INFO - Request GET /artist completed with status 200
+2025-01-09 16:12:42,831 - main - INFO - Request GET /metrics completed with status 200
+2025-01-09 16:12:51,333 - main - INFO - Artist string with ID 3 created.
+2025-01-09 16:12:51,334 - main - INFO - Request POST /artist completed with status 201
+2025-01-09 16:12:54,416 - main - INFO - Artist string with ID 4 created.
+2025-01-09 16:12:54,417 - main - INFO - Request POST /artist completed with status 201
+2025-01-09 16:12:55,884 - main - INFO - Artist string with ID 5 created.
+2025-01-09 16:12:55,885 - main - INFO - Request POST /artist completed with status 201
+2025-01-09 16:12:56,471 - main - ERROR - Attempt to create duplicate artist with ID 5.
+2025-01-09 16:12:56,472 - main - ERROR - Error adding artist: Исполнитель с таким ID уже существует.. Input: {'id': 5, 'name': 'string', 'genre': 'string', 'albums': []}
+2025-01-09 16:12:56,472 - main - INFO - Request POST /artist completed with status 400
+2025-01-09 16:13:02,022 - main - INFO - Artist with ID 2 fetched.
+2025-01-09 16:13:02,022 - main - INFO - Request GET /artist/2 completed with status 200
+2025-01-09 16:16:24,793 - main - INFO - Artist with ID 2 fetched.
+2025-01-09 16:16:24,794 - main - INFO - Request GET /artist/2 completed with status 200
+2025-01-09 16:16:26,766 - main - INFO - Artist with ID 2 fetched.
+2025-01-09 16:16:26,767 - main - INFO - Request GET /artist/2 completed with status 200
+2025-01-09 16:16:29,365 - main - INFO - Artist with ID 3 fetched.
+2025-01-09 16:16:29,366 - main - INFO - Request GET /artist/3 completed with status 200
+2025-01-09 16:16:30,801 - main - INFO - Artist with ID 3 fetched.
+2025-01-09 16:16:30,802 - main - INFO - Request GET /artist/3 completed with status 200
+2025-01-09 16:16:33,645 - main - INFO - Artist with ID 4 fetched.
+2025-01-09 16:16:33,646 - main - INFO - Request GET /artist/4 completed with status 200
+2025-01-09 16:19:28,558 - main - INFO - Request GET /docs completed with status 200
+2025-01-09 16:19:28,651 - main - INFO - Request GET /openapi.json completed with status 200
+2025-01-09 16:19:34,799 - main - ERROR - Album with ID 0 not found for track string.
+2025-01-09 16:19:34,800 - main - ERROR - Error adding track: Альбом не найден. Input: {'id': 0, 'title': 'string', 'duration': 'string', 'album_id': 0}
+2025-01-09 16:19:34,800 - main - INFO - Request POST /track completed with status 404
+2025-01-09 16:19:35,922 - main - ERROR - Album with ID 0 not found for track string.
+2025-01-09 16:19:35,923 - main - ERROR - Error adding track: Альбом не найден. Input: {'id': 0, 'title': 'string', 'duration': 'string', 'album_id': 0}
+2025-01-09 16:19:35,923 - main - INFO - Request POST /track completed with status 404
+2025-01-09 16:19:45,591 - main - ERROR - Artist with ID 0 not found for album string.
+2025-01-09 16:19:45,591 - main - ERROR - Error adding album: Исполнитель не найден. Input: {'id': 0, 'title': 'string', 'releaseDate': datetime.date(2025, 1, 9), 'artist_id': 0, 'tracks': []}
+2025-01-09 16:19:45,592 - main - INFO - Request POST /album completed with status 404
+2025-01-09 16:19:46,428 - main - ERROR - Artist with ID 0 not found for album string.
+2025-01-09 16:19:46,429 - main - ERROR - Error adding album: Исполнитель не найден. Input: {'id': 0, 'title': 'string', 'releaseDate': datetime.date(2025, 1, 9), 'artist_id': 0, 'tracks': []}
+2025-01-09 16:19:46,430 - main - INFO - Request POST /album completed with status 404
+2025-01-09 16:19:55,208 - main - INFO - Artist string with ID 0 created.
+2025-01-09 16:19:55,209 - main - INFO - Request POST /artist completed with status 201
+2025-01-09 16:19:58,097 - main - ERROR - Attempt to create duplicate artist with ID 0.
+2025-01-09 16:19:58,097 - main - ERROR - Error adding artist: Исполнитель с таким ID уже существует.. Input: {'id': 0, 'name': 'string', 'genre': 'string', 'albums': []}
+2025-01-09 16:19:58,098 - main - INFO - Request POST /artist completed with status 400
+2025-01-09 16:20:03,100 - main - INFO - Album string created by artist string.
+2025-01-09 16:20:03,101 - main - INFO - Request POST /album completed with status 201
+2025-01-09 16:20:08,637 - main - INFO - Track string created for album string.
+2025-01-09 16:20:08,638 - main - INFO - Request POST /track completed with status 201
