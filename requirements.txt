@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+prometheus-client
+pyyaml
+psutil
+opentelemetry-api
+opentelemetry-sdk
+opentelemetry-instrumentation-fastapi
+opentelemetry-exporter-jaeger
