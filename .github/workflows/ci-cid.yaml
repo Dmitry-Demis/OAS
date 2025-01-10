@@ -53,7 +53,18 @@ jobs:
 
       - name: Fetch Docker logs from application container
         run: |
+          # Подождём некоторое время, чтобы контейнер успел запуститься
+          echo "Waiting for container to start..."
+          sleep 5
+
+          # Получаем идентификатор контейнера
           CONTAINER_ID=$(docker ps -q --filter "ancestor=flask-app:latest")
+
+          # Выводим все контейнеры для диагностики
+          echo "Currently running containers:"
+          docker ps -a
+
+          # Если контейнер найден, выводим его логи
           if [ -n "$CONTAINER_ID" ]; then
             echo "Fetching logs from container with ID: $CONTAINER_ID"
             docker logs $CONTAINER_ID --tail 100
@@ -61,3 +72,4 @@ jobs:
             echo "No container found running flask-app."
             exit 1
           fi
+
