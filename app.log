@@ -93,3 +93,113 @@
 2025-01-09 22:59:23,577 - main - ERROR - Artist with ID 0 not found for album string.
 2025-01-09 22:59:26,565 - main - INFO - Artist string with ID 0 created.
 2025-01-09 22:59:26,566 - main - INFO - Request POST /artist completed with status 201
+2025-01-09 23:11:17,481 - main - INFO - Request GET / completed with status 404
+2025-01-09 23:11:18,501 - main - INFO - Request GET / completed with status 404
+2025-01-09 23:11:23,265 - main - INFO - Request GET /docs completed with status 200
+2025-01-09 23:11:24,515 - main - INFO - Request GET /openapi.json completed with status 200
+2025-01-09 23:11:29,415 - main - ERROR - Attempt to create duplicate artist with ID 0.
+2025-01-09 23:11:32,867 - main - INFO - Artist string with ID 1 created.
+2025-01-09 23:11:32,869 - main - INFO - Request POST /artist completed with status 201
+2025-01-09 23:12:39,143 - main - INFO - Album string created by artist string.
+2025-01-09 23:12:39,144 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:12:39,899 - main - INFO - Album string created by artist string.
+2025-01-09 23:12:39,901 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:12:42,988 - main - INFO - Album string created by artist string.
+2025-01-09 23:12:42,989 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:12:45,102 - main - INFO - Album string created by artist string.
+2025-01-09 23:12:45,103 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:12:50,321 - main - INFO - Artist string with ID 2 created.
+2025-01-09 23:12:50,322 - main - INFO - Request POST /artist completed with status 201
+2025-01-09 23:12:51,726 - main - ERROR - Attempt to create duplicate artist with ID 2.
+2025-01-09 23:18:19,853 - main - ERROR - Attempt to create duplicate artist with ID 2.
+2025-01-09 23:18:20,116 - main - ERROR - Attempt to create duplicate artist with ID 2.
+2025-01-09 23:18:28,179 - main - INFO - Album string created by artist string.
+2025-01-09 23:18:28,180 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:18:32,367 - main - INFO - Fetching all tracks.
+2025-01-09 23:18:32,368 - main - INFO - Request GET /track completed with status 200
+2025-01-09 23:18:33,232 - main - INFO - Fetching all tracks.
+2025-01-09 23:18:33,233 - main - INFO - Request GET /track completed with status 200
+2025-01-09 23:18:40,285 - main - INFO - Track string created for album string.
+2025-01-09 23:18:40,287 - main - INFO - Request POST /track completed with status 201
+2025-01-09 23:18:44,169 - main - INFO - Album string created by artist string.
+2025-01-09 23:18:44,170 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:18:47,760 - main - INFO - Album string created by artist string.
+2025-01-09 23:18:47,761 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:29:46,523 - main - INFO - Album string created by artist string.
+2025-01-09 23:29:46,525 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:29:55,225 - main - ERROR - Attempt to create duplicate artist with ID 2.
+2025-01-09 23:30:03,880 - main - ERROR - Attempt to create duplicate artist with ID 1.
+2025-01-09 23:30:06,461 - main - INFO - Request GET /docs completed with status 200
+2025-01-09 23:30:06,583 - main - INFO - Request GET /openapi.json completed with status 200
+2025-01-09 23:30:12,182 - main - ERROR - Attempt to create duplicate artist with ID 0.
+2025-01-09 23:30:18,646 - main - ERROR - Attempt to create duplicate artist with ID 0.
+2025-01-09 23:30:27,766 - main - INFO - Request GET / completed with status 404
+2025-01-09 23:30:32,967 - main - INFO - Fetching all artists.
+2025-01-09 23:30:32,968 - main - INFO - Request GET /artist completed with status 200
+2025-01-09 23:31:01,955 - main - ERROR - Attempt to create duplicate artist with ID 0.
+2025-01-09 23:31:03,050 - main - ERROR - Attempt to create duplicate artist with ID 0.
+2025-01-09 23:34:17,326 - main - INFO - Artist string with ID 5 created.
+2025-01-09 23:34:17,327 - main - INFO - Request POST /artist completed with status 201
+2025-01-09 23:34:22,435 - main - INFO - Artist string with ID 6 created.
+2025-01-09 23:34:22,436 - main - INFO - Request POST /artist completed with status 201
+2025-01-09 23:44:22,887 - main - ERROR - Attempt to create duplicate artist with ID 6.
+2025-01-09 23:44:26,231 - main - INFO - Fetching all artists.
+2025-01-09 23:44:26,233 - main - INFO - Request GET /artist completed with status 200
+2025-01-09 23:44:27,106 - main - INFO - Fetching all artists.
+2025-01-09 23:44:27,107 - main - INFO - Request GET /artist completed with status 200
+2025-01-09 23:44:27,681 - main - INFO - Fetching all artists.
+2025-01-09 23:44:27,683 - main - INFO - Request GET /artist completed with status 200
+2025-01-09 23:44:33,067 - main - INFO - Request GET /docs completed with status 200
+2025-01-09 23:44:33,186 - main - INFO - Request GET /openapi.json completed with status 200
+2025-01-09 23:44:40,910 - main - INFO - Fetching all albums.
+2025-01-09 23:44:40,911 - main - INFO - Request GET /album completed with status 200
+2025-01-09 23:44:45,757 - main - INFO - Album string created by artist string.
+2025-01-09 23:44:45,758 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:44:48,329 - main - INFO - Album string created by artist string.
+2025-01-09 23:44:48,331 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:44:48,846 - main - INFO - Album string created by artist string.
+2025-01-09 23:44:48,847 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:44:49,203 - main - INFO - Album string created by artist string.
+2025-01-09 23:44:49,203 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:44:49,405 - main - INFO - Album string created by artist string.
+2025-01-09 23:44:49,412 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:44:49,597 - main - INFO - Album string created by artist string.
+2025-01-09 23:44:49,598 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:44:49,795 - main - INFO - Album string created by artist string.
+2025-01-09 23:44:49,796 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:44:49,972 - main - INFO - Album string created by artist string.
+2025-01-09 23:44:49,973 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:44:50,158 - main - INFO - Album string created by artist string.
+2025-01-09 23:44:50,159 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:44:50,357 - main - INFO - Album string created by artist string.
+2025-01-09 23:44:50,358 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:44:50,731 - main - INFO - Album string created by artist string.
+2025-01-09 23:44:50,732 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:44:50,932 - main - INFO - Album string created by artist string.
+2025-01-09 23:44:50,933 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:44:51,141 - main - INFO - Album string created by artist string.
+2025-01-09 23:44:51,142 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:44:51,332 - main - INFO - Album string created by artist string.
+2025-01-09 23:44:51,334 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:44:51,573 - main - INFO - Album string created by artist string.
+2025-01-09 23:44:51,574 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:44:51,811 - main - INFO - Album string created by artist string.
+2025-01-09 23:44:51,812 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:44:52,943 - main - INFO - Album string created by artist string.
+2025-01-09 23:44:52,944 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:44:58,957 - main - INFO - Fetching all tracks.
+2025-01-09 23:44:58,957 - main - INFO - Request GET /track completed with status 200
+2025-01-09 23:45:05,290 - main - INFO - Track string created for album string.
+2025-01-09 23:45:05,291 - main - INFO - Request POST /track completed with status 201
+2025-01-09 23:48:52,246 - main - INFO - Track string created for album string.
+2025-01-09 23:48:52,247 - main - INFO - Request POST /track completed with status 201
+2025-01-09 23:49:03,015 - main - INFO - Track string created for album string.
+2025-01-09 23:49:03,016 - main - INFO - Request POST /track completed with status 201
+2025-01-09 23:49:11,520 - main - INFO - Track string created for album string.
+2025-01-09 23:49:11,522 - main - INFO - Request POST /track completed with status 201
+2025-01-09 23:49:19,856 - main - INFO - Album string created by artist string.
+2025-01-09 23:49:19,858 - main - INFO - Request POST /album completed with status 201
+2025-01-09 23:49:29,571 - main - INFO - Artist string with ID 7 created.
+2025-01-09 23:49:29,573 - main - INFO - Request POST /artist completed with status 201
+2025-01-09 23:50:02,435 - main - INFO - Artist string with ID 12 created.
+2025-01-09 23:50:02,436 - main - INFO - Request POST /artist completed with status 201
