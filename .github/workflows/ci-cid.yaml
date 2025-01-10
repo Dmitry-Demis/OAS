@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-
+  
   pull_request:
     branches:
       - master
@@ -14,16 +14,40 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set environment variables from GitHub Secrets
+        run: |
+          echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
+          echo "PORT=${{ secrets.PORT }}" >> $GITHUB_ENV
+          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> $GITHUB_ENV
+          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> $GITHUB_ENV
+          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> $GITHUB_ENV
+          echo "PHOTOS_DIRECTORY=${{ secrets.PHOTOS_DIRECTORY }}" >> $GITHUB_ENV
+          echo "REDIS_HOST=${{ secrets.REDIS_HOST }}" >> $GITHUB_ENV
+          echo "REDIS_PORT=${{ secrets.REDIS_PORT }}" >> $GITHUB_ENV
+
+
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.10'
+          python-version: '3.9'
+
+      - name: Install flake8
+        run: pip install flake8
+
+      - name: Run flake8 linter
+        run: flake8 .
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v1
+
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
 
       - name: Create Docker network
         run: docker network create petition_service_net
@@ -45,15 +69,14 @@ jobs:
       - name: Push Docker image to DockerHub
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/petition_service_image:latest
-
+            
       - name: Install Docker Compose
         run: |
           sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
 
       - name: Run Docker Compose
-        run: |
-          docker-compose -f docker-compose.yml up -d
+        run: docker-compose up -d
 
       - name: Wait for service to be ready
         run: |
@@ -66,14 +89,4 @@ jobs:
           done
           echo "Service did not become ready after 30 attempts."
           exit 1
-
-      - name: View logs of container
-        run: |
-          CONTAINER_ID=$(docker ps -q --filter "ancestor=petition_service_image")
-          if [ -n "$CONTAINER_ID" ]; then
-            echo "Fetching logs from container with ID: $CONTAINER_ID"
-            docker logs $CONTAINER_ID
-          else
-            echo "No container found running petition_service_image."
-            exit 1
-          fi
+      
