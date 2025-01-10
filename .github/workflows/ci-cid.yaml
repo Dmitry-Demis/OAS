@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-  
+
   pull_request:
     branches:
       - master
@@ -20,10 +20,10 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
+          python-version: '3.10'
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v2
 
       - name: Create Docker network
         run: docker network create petition_service_net
@@ -45,14 +45,15 @@ jobs:
       - name: Push Docker image to DockerHub
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/petition_service_image:latest
-            
+
       - name: Install Docker Compose
         run: |
           sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
 
       - name: Run Docker Compose
-        run: docker-compose up -d
+        run: |
+          docker-compose -f docker-compose.yml up -d
 
       - name: Wait for service to be ready
         run: |
@@ -66,17 +67,13 @@ jobs:
           echo "Service did not become ready after 30 attempts."
           exit 1
 
-
-        - name: View logs of container
-          run: |
-            CONTAINER_ID=$(docker ps -q --filter "ancestor=petition_service_image")
-            if [ -n "$CONTAINER_ID" ]; then
-              echo "Fetching logs from container with ID: $CONTAINER_ID"
-              docker logs $CONTAINER_ID
-            else
-              echo "No container found running petition_service_image."
-              exit 1
-            fi
-
-
-      
+      - name: View logs of container
+        run: |
+          CONTAINER_ID=$(docker ps -q --filter "ancestor=petition_service_image")
+          if [ -n "$CONTAINER_ID" ]; then
+            echo "Fetching logs from container with ID: $CONTAINER_ID"
+            docker logs $CONTAINER_ID
+          else
+            echo "No container found running petition_service_image."
+            exit 1
+          fi
