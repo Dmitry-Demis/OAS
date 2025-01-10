@@ -8,7 +8,7 @@ services:
       dockerfile: Dockerfile
     container_name: fastapi_app
     ports:
-      - "8080:8080"  # Проброс порта для доступа к приложению
+      - "8000:8000"  # Проброс порта для доступа к приложению
     environment:
       - OTEL_EXPORTER_JAEGER_AGENT_HOST=jaeger
       - OTEL_EXPORTER_JAEGER_AGENT_PORT=6831

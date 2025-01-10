@@ -1,5 +1,5 @@
 # Используем официальный образ Python
-FROM python:3.10-slim
+FROM python:3.10
 
 # Устанавливаем рабочую директорию
 WORKDIR /app
@@ -13,8 +13,8 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 # Копируем исходный код приложения
 COPY . .
 
-# Открываем порт для приложения
-EXPOSE 8080
-
 # Команда для запуска приложения
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+# Открываем порт для приложения
+EXPOSE 8000
