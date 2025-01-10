@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3  # Обновлено на последнюю версию
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -25,9 +25,9 @@ jobs:
           sudo curl -L "https://github.com/docker/compose/releases/download/v2.10.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
 
-      - name: Install Loki logging plugin
+      - name: Install Loki logging plugin (if necessary)
         run: |
-          docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
+          docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions  # Убедитесь, что это действительно нужно
 
       - name: Build Docker image
         run: |
@@ -38,7 +38,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-     
+
       - name: Push Docker image to DockerHub
         run: |
           docker tag your_image_name ${{ secrets.DOCKER_USERNAME }}/your_image_name:latest

@@ -221,3 +221,4 @@
 2025-01-10 18:09:05,092 - main - INFO - Request GET / completed with status 404
 2025-01-10 18:09:13,746 - main - INFO - Request GET /docs completed with status 200
 2025-01-10 18:10:56,370 - main - INFO - Request GET / completed with status 404
+2025-01-10 18:22:27,639 - main - INFO - Request GET /v1/ui/ completed with status 404
