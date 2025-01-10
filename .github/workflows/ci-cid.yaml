@@ -40,8 +40,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Install Loki logging plugin
-            run: |
-              docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
+        run: |
+          docker plugin install grafana/loki-docker-driver:latest --alias loki --grant-all-permissions
 
       - name: Push Docker image to DockerHub
         run: |
