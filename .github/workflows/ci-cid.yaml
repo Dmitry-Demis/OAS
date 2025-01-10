@@ -67,7 +67,16 @@ jobs:
           exit 1
 
 
-      - name: View logs of container
-        run: docker logs petition_service_image
+        - name: View logs of container
+          run: |
+            CONTAINER_ID=$(docker ps -q --filter "ancestor=petition_service_image")
+            if [ -n "$CONTAINER_ID" ]; then
+              echo "Fetching logs from container with ID: $CONTAINER_ID"
+              docker logs $CONTAINER_ID
+            else
+              echo "No container found running petition_service_image."
+              exit 1
+            fi
+
 
       

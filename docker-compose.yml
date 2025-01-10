@@ -16,6 +16,11 @@ services:
       - jaeger  # Зависимость от Jaeger
     networks:
       - monitoring
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   # Сервис Jaeger для трассировки
   jaeger:
@@ -38,14 +43,6 @@ services:
     networks:
       - monitoring
 
-  loki:
-    image: grafana/loki:latest
-    ports:
-      - "3100:3100"
-    volumes:
-      - ./loki/loki.yml:/etc/loki/local-config.yml
-
-      
   # Сервис Grafana для визуализации
   grafana:
     image: grafana/grafana:latest
@@ -56,13 +53,12 @@ services:
       - monitoring
     depends_on:
       - prometheus  # Зависимость от Prometheus
-      - loki
+      - jaeger
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin  # Устанавливаем пароль администратора для Grafana
       - GF_INSTALL_PLUGINS=grafana-jaeger-datasource  # Устанавливаем плагин Jaeger в Grafana
 
-
 # Сетевое подключение
 networks:
   monitoring:
-    driver: bridge  # Используем мостовую сеть для контейнеров
+    driver: bridge
