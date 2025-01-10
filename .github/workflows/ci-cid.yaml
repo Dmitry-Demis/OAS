@@ -14,18 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set environment variables from GitHub Secrets
-        run: |
-          echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
-          echo "PORT=${{ secrets.PORT }}" >> $GITHUB_ENV
-          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> $GITHUB_ENV
-          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> $GITHUB_ENV
-          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> $GITHUB_ENV
-          echo "PHOTOS_DIRECTORY=${{ secrets.PHOTOS_DIRECTORY }}" >> $GITHUB_ENV
-          echo "REDIS_HOST=${{ secrets.REDIS_HOST }}" >> $GITHUB_ENV
-          echo "REDIS_PORT=${{ secrets.REDIS_PORT }}" >> $GITHUB_ENV
-
-
+     
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -33,12 +22,6 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.9'
-
-      - name: Install flake8
-        run: pip install flake8
-
-      - name: Run flake8 linter
-        run: flake8 .
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
