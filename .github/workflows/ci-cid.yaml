@@ -42,7 +42,7 @@ jobs:
       - name: Wait for service to be ready
         run: |
           for i in {1..30}; do
-            if curl -f http://localhost:8080; then
+            if curl -f http://localhost:8080/docs; then
               echo "Service is ready!"
               exit 0
             fi
