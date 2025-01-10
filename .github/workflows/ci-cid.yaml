@@ -50,3 +50,14 @@ jobs:
           done
           echo "Service did not become ready after 30 attempts."
           exit 1
+
+      - name: Fetch Docker logs from application container
+        run: |
+          CONTAINER_ID=$(docker ps -q --filter "ancestor=flask-app:latest")
+          if [ -n "$CONTAINER_ID" ]; then
+            echo "Fetching logs from container with ID: $CONTAINER_ID"
+            docker logs $CONTAINER_ID --tail 100
+          else
+            echo "No container found running flask-app."
+            exit 1
+          fi
