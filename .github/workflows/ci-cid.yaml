@@ -46,7 +46,7 @@ jobs:
 
       - name: Run Docker Compose
         run: |
-          docker-compose up -d
+          docker-compose up --build -d
 
       - name: Wait for service to be ready
         run: |

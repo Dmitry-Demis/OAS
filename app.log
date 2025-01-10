@@ -203,3 +203,21 @@
 2025-01-09 23:49:29,573 - main - INFO - Request POST /artist completed with status 201
 2025-01-09 23:50:02,435 - main - INFO - Artist string with ID 12 created.
 2025-01-09 23:50:02,436 - main - INFO - Request POST /artist completed with status 201
+2025-01-10 17:53:58,444 - main - INFO - Request GET / completed with status 404
+2025-01-10 17:53:59,551 - main - INFO - Request GET / completed with status 404
+2025-01-10 17:54:06,579 - main - INFO - Request GET /docs completed with status 200
+2025-01-10 17:54:06,775 - main - INFO - Request GET /openapi.json completed with status 200
+2025-01-10 18:02:06,184 - main - INFO - Request GET / completed with status 404
+2025-01-10 18:02:17,627 - main - INFO - Request GET / completed with status 404
+2025-01-10 18:02:18,082 - main - INFO - Request GET / completed with status 404
+2025-01-10 18:02:24,805 - main - INFO - Request GET /ui completed with status 404
+2025-01-10 18:02:27,385 - main - INFO - Request GET /docs completed with status 200
+2025-01-10 18:02:27,632 - main - INFO - Request GET /openapi.json completed with status 200
+2025-01-10 18:04:51,590 - main - INFO - Request GET / completed with status 404
+2025-01-10 18:04:51,952 - main - INFO - Request GET /ui completed with status 404
+2025-01-10 18:04:52,535 - main - INFO - Request GET /ui completed with status 404
+2025-01-10 18:04:56,346 - main - INFO - Request GET /docs completed with status 200
+2025-01-10 18:04:57,597 - main - INFO - Request GET /openapi.json completed with status 200
+2025-01-10 18:09:05,092 - main - INFO - Request GET / completed with status 404
+2025-01-10 18:09:13,746 - main - INFO - Request GET /docs completed with status 200
+2025-01-10 18:10:56,370 - main - INFO - Request GET / completed with status 404
