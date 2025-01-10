@@ -71,4 +71,9 @@ jobs:
           done
           echo "Service did not become ready after 30 attempts."
           exit 1
+
+
+      - name: View logs of container
+        run: docker logs petition_service_image
+
       
